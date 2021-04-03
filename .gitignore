@@ -54,3 +54,6 @@ yarn-error.log*
  .pnp.*
 
 # End of https://www.toptal.com/developers/gitignore/api/visualstudiocode,yarn
+
+#Other:
+orig-czndk/*
