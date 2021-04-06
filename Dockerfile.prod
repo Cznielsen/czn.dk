@@ -1,7 +1,7 @@
 FROM node:alpine AS build
 
-RUN addgroup -g 1000 -S www-data \
- && adduser -u 1000 -D -S -G www-data www-data
+RUN addgroup -g 1337 -S www-data \
+ && adduser -u 1337 -D -S -G www-data www-data
 
 WORKDIR /app
 
