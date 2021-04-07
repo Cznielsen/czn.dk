@@ -25,6 +25,10 @@ http {
 	# server_name_in_redirect off;
 
 	include /etc/nginx/mime.types;
+	types { 
+		application/wasm wasm;
+	}
+
 	default_type application/octet-stream;
 
 	##
