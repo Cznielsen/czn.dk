@@ -7,10 +7,10 @@ services:
             context: .
             dockerfile: Dockerfile.dev
         ports:
-            - "8080:8080"
+            - 8080:8080
         volumes:
-            - "/app/node_modules"
-            - "./:/app"
+            - /app/node_modules
+            - ./:/app
     prod:
         stdin_open: true
         container_name: czndk_prod
@@ -18,19 +18,18 @@ services:
             context: .
             dockerfile: Dockerfile.prod
         ports:
-            - "80:80"
-            - "443:443"
+            - 80:80
+            - 443:443
         volumes:
-            - "/app/node_modules"
-            - "./:/app"
-            - "./certbot/conf:/etc/nginx/ssl"
-            - "./certbot/data:/var/www/certbot"
+            - /app/node_modules
+            - ./:/app
+            - ./certbot/conf:/etc/letsencrypt
+            - ./certbot/www:/var/www/certbot
 
     certbot:
         image: certbot/certbot:latest
         container_name: certbot
-        command: certonly --webroot --webroot-path=/var/www/certbot --email christian@czn.dk --agree-tos --no-eff-email -d czn.dk -d www.czn.dk
+        command: certonly --webroot --webroot-path=/var/www/certbot --email christian@czn.dk --agree-tos --staging --no-eff-email -d czn.dk -d www.czn.dk
         volumes:
             - ./certbot/conf:/etc/letsencrypt
-            - ./certbot/logs:/var/log/letsencrypt
-            - ./certbot/data:/var/www/certbot
+            - ./certbot/www:/var/www/certbot

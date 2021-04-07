@@ -18,4 +18,5 @@ COPY orig-czndk/czndk /var/www/orig-czndk/czndk
 COPY orig-czndk/cs /var/www/orig-czndk/cs
 COPY --from=build /app/build /usr/share/nginx/html
 EXPOSE 80
+EXPOSE 442
 CMD ["nginx", "-g", "daemon off;"]
