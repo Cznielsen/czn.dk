@@ -19,6 +19,17 @@ services:
             dockerfile: Dockerfile.prod
         ports:
             - "80:80"
+            - "443:443"
         volumes:
             - "/app/node_modules"
             - "./:/app"
+            - "./certbot/conf:/etc/nginx/ssl"
+            - "./certbot/data:/var/www/certbot"
+
+    certbot:
+        image: certbot/certbot:latest
+        command: certonly --webroot --webroot-path=/var/www/certbot --email christian@czn.dk --agree-tos --no-eff-email -d czn.dk -d www.czn.dk
+        volumes:
+            - ./certbot/conf:/etc/letsencrypt
+            - ./certbot/logs:/var/log/letsencrypt
+            - ./certbot/data:/var/www/certbot
