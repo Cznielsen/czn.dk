@@ -23,11 +23,12 @@ services:
         volumes:
             - "/app/node_modules"
             - "./:/app"
-            - "./certbot/conf:/etc/nginx/ssl"
+            - "./certbot/conf:/etc/letsencrypt"
             - "./certbot/data:/var/www/certbot"
 
     certbot:
         image: certbot/certbot:latest
+        container_name: certbot
         command: certonly --webroot --webroot-path=/var/www/certbot --email christian@czn.dk --agree-tos --no-eff-email -d czn.dk -d www.czn.dk
         volumes:
             - ./certbot/conf:/etc/letsencrypt
