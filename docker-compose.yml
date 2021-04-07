@@ -23,7 +23,7 @@ services:
         volumes:
             - "/app/node_modules"
             - "./:/app"
-            - "./certbot/conf:/etc/letsencrypt"
+            - "./certbot/conf:/etc/nginx/ssl"
             - "./certbot/data:/var/www/certbot"
 
     certbot:
